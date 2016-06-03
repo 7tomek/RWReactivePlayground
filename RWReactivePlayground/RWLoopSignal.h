@@ -5,5 +5,6 @@
 @interface RWLoopSignal : NSObject
 
 + (RACSignal *)networkingStatusSignal;
++ (RACSignal *)dispatchNetworkingSignal;
 
 @end

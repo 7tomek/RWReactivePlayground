@@ -9,7 +9,6 @@ typedef void (^RWLoopResponse)(NSURLResponse * _Nonnull response, id  _Nullable 
         NSURLSessionDataTask *task = [self sessionDataTaskStatus:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
             [subscriber sendNext:RACTuplePack(response, responseObject, error)];
         }];
-        return nil;
         return [RACDisposable disposableWithBlock:^{
             [task cancel];
         }];
@@ -43,6 +42,25 @@ typedef void (^RWLoopResponse)(NSURLResponse * _Nonnull response, id  _Nullable 
     [cfg setTimeoutIntervalForRequest:1.0];
     
     return cfg;
+}
+
++ (RACSignal *)dispatchNetworkingSignal {
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        [[RWLoopSignal networkingStatusSignal] subscribeNext:^(RACTuple *result) {
+            RACTupleUnpack(NSURLResponse *response,
+                           id responseObject,
+                           NSError *error) = result;
+            // Parsing
+            NSLog(@"responseObject: %@", responseObject);
+            // Return object info
+            NSDictionary *JSONData = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
+            [subscriber sendNext:[JSONData objectForKey:@"result"]];
+        }];
+        
+        return [RACDisposable disposableWithBlock:^{
+            //
+        }];
+    }];
 }
 
 @end

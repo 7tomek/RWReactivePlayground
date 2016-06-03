@@ -49,16 +49,8 @@
     takeUntil:[_btnCancel rac_signalForControlEvents:UIControlEventTouchUpInside]]
     takeUntil:[_btnChange rac_signalForControlEvents:UIControlEventTouchUpInside]];
     
-    self.loopDisposable = [[[singal flattenMap:^RACStream *(id value) {
-        return [RWLoopSignal networkingStatusSignal];
-    }]
-    map:^id(RACTuple *result) {
-        RACTupleUnpack(NSURLResponse *response,
-                       id responseObject,
-                       NSError *error) = result;
-        // Parsing
-        return @1;
-        
+    self.loopDisposable = [[singal flattenMap:^RACStream *(id value) {
+        return [RWLoopSignal dispatchNetworkingSignal];
     }]
     subscribeNext:^(id x) {
         NSLog(@"=> result %@, %@", x,[NSDate date]);
