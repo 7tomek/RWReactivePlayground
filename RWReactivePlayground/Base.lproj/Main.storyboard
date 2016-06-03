@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="3Cp-So-Gdc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="3Cp-So-Gdc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -19,7 +20,7 @@
             </objects>
             <point key="canvasLocation" x="-612" y="-200"/>
         </scene>
-        <!--View Controller - Login-->
+        <!--Login-->
         <scene sceneID="Tc9-Kw-bBy">
             <objects>
                 <viewController title="Login" id="Bku-Il-Wq0" customClass="RWViewController" sceneMemberID="viewController">
@@ -33,26 +34,22 @@
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m6l-hW-lH1">
                                 <rect key="frame" x="45" y="105" width="223" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3qt-Tm-QLH">
                                 <rect key="frame" x="45" y="152" width="223" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TM9-GL-BlB">
                                 <rect key="frame" x="192" y="201" width="76" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Sign In">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Invalid credentials" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kJD-IT-3Eg">
                                 <rect key="frame" x="45" y="205" width="147" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="0.018977788870000002" blue="0.040716178679999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -73,10 +70,10 @@
             </objects>
             <point key="canvasLocation" x="-90" y="-207"/>
         </scene>
-        <!--View Controller - Kitten!-->
+        <!--Loop-->
         <scene sceneID="yi0-k6-ls1">
             <objects>
-                <viewController storyboardIdentifier="success" id="nGw-JE-c69" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="success" id="nGw-JE-c69" customClass="RWLoopViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bft-wA-nxE"/>
                         <viewControllerLayoutGuide type="bottom" id="rAQ-l8-nij"/>
@@ -85,36 +82,51 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="kitten.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="X7C-32-hfy">
-                                <rect key="frame" x="0.0" y="20" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="http://www.flickr.com/photos/50362297@N07" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oRi-R2-prc">
-                                <rect key="frame" x="20" y="537" width="192" height="11"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OPb-kg-gvz">
+                                <rect key="frame" x="138" y="269" width="45" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="vTm-Av-wwa"/>
+                                    <constraint firstAttribute="width" constant="46" id="x01-9K-PBl"/>
+                                </constraints>
+                                <state key="normal" title="Invoke"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vqB-J5-XyV">
+                                <rect key="frame" x="136" y="307" width="48" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="aLL-bA-H2I"/>
+                                    <constraint firstAttribute="width" constant="48" id="nU9-tY-SID"/>
+                                </constraints>
+                                <state key="normal" title="Cancel"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H8Q-8e-kab">
+                                <rect key="frame" x="135" y="345" width="53" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="53" id="7cv-00-ub3"/>
+                                    <constraint firstAttribute="height" constant="30" id="Mw3-f9-Gkh"/>
+                                </constraints>
+                                <state key="normal" title="Change"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="rAQ-l8-nij" firstAttribute="top" secondItem="oRi-R2-prc" secondAttribute="bottom" constant="20" id="bJm-Ga-A7O"/>
-                            <constraint firstItem="oRi-R2-prc" firstAttribute="leading" secondItem="RwN-Dx-gHF" secondAttribute="leading" constant="20" id="zvJ-0y-Xyd"/>
+                            <constraint firstItem="OPb-kg-gvz" firstAttribute="centerX" secondItem="RwN-Dx-gHF" secondAttribute="centerX" id="8Fo-2j-VEI"/>
+                            <constraint firstItem="H8Q-8e-kab" firstAttribute="centerX" secondItem="RwN-Dx-gHF" secondAttribute="centerX" id="AqM-ds-W8C"/>
+                            <constraint firstItem="OPb-kg-gvz" firstAttribute="centerY" secondItem="RwN-Dx-gHF" secondAttribute="centerY" id="PCy-ki-fAW"/>
+                            <constraint firstItem="vqB-J5-XyV" firstAttribute="top" secondItem="OPb-kg-gvz" secondAttribute="bottom" constant="8" id="m3a-Wu-yHQ"/>
+                            <constraint firstItem="H8Q-8e-kab" firstAttribute="top" secondItem="vqB-J5-XyV" secondAttribute="bottom" constant="8" id="ocJ-wa-n7u"/>
+                            <constraint firstItem="vqB-J5-XyV" firstAttribute="centerX" secondItem="RwN-Dx-gHF" secondAttribute="centerX" id="tw8-cB-l0u"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Kitten!" id="RmC-zs-Atf"/>
+                    <navigationItem key="navigationItem" title="Loop" id="RmC-zs-Atf"/>
+                    <connections>
+                        <outlet property="btnCancel" destination="vqB-J5-XyV" id="PF3-eg-AdO"/>
+                        <outlet property="btnChange" destination="H8Q-8e-kab" id="xMu-qq-UAF"/>
+                        <outlet property="btnInvoke" destination="OPb-kg-gvz" id="qv4-z3-JPf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qFj-uZ-rPS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="297" y="-207"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="kitten.jpg" width="537" height="740"/>
-    </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
 </document>

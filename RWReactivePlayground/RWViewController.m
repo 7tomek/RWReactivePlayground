@@ -1,11 +1,3 @@
-//
-//  RWViewController.m
-//  RWReactivePlayground
-//
-//  Created by Colin Eberhardt on 18/12/2013.
-//  Copyright (c) 2013 Colin Eberhardt. All rights reserved.
-//
-
 #import "RWViewController.h"
 #import "RWDummySignInService.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
@@ -76,31 +68,29 @@
     flattenMap:^id(id x) {
       return [self signInSignal];
     }]
-    subscribeNext:^(NSNumber *signedIn) {
-      self.signInButton.enabled = YES;
-      BOOL success = [signedIn boolValue];
-      self.signInFailureText.hidden = success;
-      if (success) {
-        [self performSegueWithIdentifier:@"signInSuccess" sender:self];
-      }
-    }];
+   subscribeNext:^(id response) {
+       self.signInButton.enabled = YES;
+       self.signInFailureText.hidden = YES;
+       [self performSegueWithIdentifier:@"signInSuccess" sender:self];
+   }];
 }
 
 - (BOOL)isValidUsername:(NSString *)username {
-  return username.length > 3;
+  return username.length > 1;
 }
 
 - (BOOL)isValidPassword:(NSString *)password {
-  return password.length > 3;
+  return password.length > 1;
 }
 
 -(RACSignal *)signInSignal {
   return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
     [self.signInService
-     signInWithUsername:self.usernameTextField.text
+     signNetInWithUsername:self.usernameTextField.text
      password:self.passwordTextField.text
-     complete:^(BOOL success) {
-       [subscriber sendNext:@(success)];
+     complete:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+         
+       [subscriber sendNext:responseObject];
        [subscriber sendCompleted];
      }];
     return nil;

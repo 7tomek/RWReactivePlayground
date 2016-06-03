@@ -1,17 +1,10 @@
-//
-//  RWDummySignInService.m
-//  RWReactivePlayground
-//
-//  Created by Colin Eberhardt on 18/12/2013.
-//  Copyright (c) 2013 Colin Eberhardt. All rights reserved.
-//
-
 #import "RWDummySignInService.h"
+#import <AFNetworking/AFNetworking.h>
 
 @implementation RWDummySignInService
 
 
-- (void)signInWithUsername:(NSString *)username password:(NSString *)password complete:(RWSignInResponse)completeBlock {
+- (void)signInWithUsername:(NSString *)username password:(NSString *)password complete:(RWSignSimpleInResponse)completeBlock {
 
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     double delayInSeconds = 2.0;
@@ -21,6 +14,29 @@
         BOOL success = [username isEqualToString:@"user"] && [password isEqualToString:@"password"];
         completeBlock(success);
     });
+}
+
+- (void)signNetInWithUsername:(NSString *)username password:(NSString *)password complete:(RWSignInResponse)completeBlock {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
+    NSURLSessionConfiguration *cfg = [NSURLSessionConfiguration defaultSessionConfiguration];
+    [cfg setTimeoutIntervalForRequest:1.0];
+
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration: cfg];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    AFHTTPRequestSerializer *serializer = [AFHTTPRequestSerializer serializer];
+
+    NSError *err;
+    NSURLRequest *req = [serializer requestWithMethod:@"GET" URLString:@"https://raw.githubusercontent.com/7tomek/Service/master/success.json" parameters:nil error:&err];
+    
+    
+    NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:req completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+        
+        NSLog(@"%@", [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]);
+        completeBlock(response, responseObject, error);
+    }];
+    
+    [dataTask resume];
 }
 
 
